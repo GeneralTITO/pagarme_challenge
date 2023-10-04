@@ -19,9 +19,9 @@ export class Payable {
   })
   status: string;
 
-  @CreateDateColumn({ type: "date" })
-  createdAt: string;
+  @CreateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
+  createdAt: Date;
 
-  @Column({ type: "date" })
-  payment_date: string;
+  @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
+  payment_date: Date;
 }

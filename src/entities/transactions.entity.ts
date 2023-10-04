@@ -31,6 +31,6 @@ export class Transaction {
   @Column({ length: 3 })
   cvv: string;
 
-  @CreateDateColumn({ type: "date" })
-  createdAt: string;
+  @CreateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
+  createdAt: Date;
 }
