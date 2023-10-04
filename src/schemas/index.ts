@@ -5,6 +5,16 @@ import {
   userUpdateSchema,
 } from "./user.schema";
 import { sessionSchema } from "./session.schema";
+import {
+  payableSchema,
+  payableCreateSchema,
+  payableReturnSchema,
+} from "./payable.schema";
+import {
+  transactionCreateSchema,
+  transactionReturnSchema,
+  transactionSchema,
+} from "./transaction.schema";
 
 export {
   userCreateSchema,
@@ -12,4 +22,10 @@ export {
   userSchema,
   userUpdateSchema,
   sessionSchema,
+  payableSchema,
+  payableCreateSchema,
+  payableReturnSchema,
+  transactionCreateSchema,
+  transactionReturnSchema,
+  transactionSchema,
 };
