@@ -2,11 +2,15 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from "typeorm";
+import { User } from "./user.entity";
+import { Payable } from "./payables.entity";
 
 @Entity("transaction")
-export class Transaction {
+export class Transactione {
   @PrimaryGeneratedColumn("increment")
   id: number;
 
@@ -33,4 +37,10 @@ export class Transaction {
 
   @CreateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
   createdAt: Date;
+
+  @ManyToOne(() => User, (user) => user.transactions)
+  user: User;
+
+  @OneToMany(() => Payable, (payables) => payables.transaction)
+  payables: Payable[];
 }
