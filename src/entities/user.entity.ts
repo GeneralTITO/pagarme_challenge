@@ -6,9 +6,11 @@ import {
   UpdateDateColumn,
   BeforeInsert,
   BeforeUpdate,
+  OneToMany,
 } from "typeorm";
-
 import { getRounds, hashSync } from "bcryptjs";
+import { Payable } from "./payables.entity";
+import { Transactione } from "./transactions.entity";
 
 @Entity("users")
 export class User {
@@ -24,11 +26,15 @@ export class User {
   @Column({ length: 250 })
   password: string;
 
-  @CreateDateColumn({ type: "date" })
-  createdAt: string;
+  @CreateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
+  createdAt: Date;
 
-  @UpdateDateColumn({ type: "date" })
-  updatedAt: string;
+  @UpdateDateColumn({
+    type: "timestamp",
+    default: () => "CURRENT_TIMESTAMP",
+    onUpdate: "CURRENT_TIMESTAMP",
+  })
+  updatedAt: Date;
 
   @BeforeInsert()
   @BeforeUpdate()
@@ -38,4 +44,10 @@ export class User {
       this.password = hashSync(this.password, 10);
     }
   }
+
+  @OneToMany(() => Transactione, (transactions) => transactions.user)
+  transactions: Transactione[];
+
+  @OneToMany(() => Payable, (payables) => payables.user)
+  payables: Payable[];
 }
