@@ -1,11 +1,16 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  PrimaryGeneratedColumn,
+} from "typeorm";
 
 @Entity("transaction")
 export class Transaction {
   @PrimaryGeneratedColumn("increment")
   id: number;
 
-  @Column({ precision: 11, scale: 2 })
+  @Column({ type: "decimal", precision: 11, scale: 2 })
   value: number;
 
   @Column({
@@ -15,14 +20,17 @@ export class Transaction {
   payment_method: string;
 
   @Column({ length: 16 })
-  card_number: number;
+  card_number: string;
 
   @Column({ length: 250 })
   cardholder_name: string;
 
-  @Column({ type: "datetime" })
+  @Column({ length: 6 })
   card_expiration_date: string;
 
-  @Column({ precision: 3 })
-  cvv: number;
+  @Column({ length: 3 })
+  cvv: string;
+
+  @CreateDateColumn({ type: "date" })
+  createdAt: string;
 }

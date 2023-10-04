@@ -5,12 +5,12 @@ import {
   PrimaryGeneratedColumn,
 } from "typeorm";
 
-@Entity("transaction")
+@Entity("payables")
 export class Payable {
   @PrimaryGeneratedColumn("increment")
   id: number;
 
-  @Column({ precision: 11, scale: 2 })
+  @Column({ type: "decimal", precision: 11, scale: 2 })
   value: number;
 
   @Column({
@@ -19,9 +19,9 @@ export class Payable {
   })
   status: string;
 
-  @CreateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
-  createdAt: Date;
+  @CreateDateColumn({ type: "date" })
+  createdAt: string;
 
-  @Column({ type: "timestamp" })
+  @Column({ type: "date" })
   payment_date: string;
 }
