@@ -17,6 +17,9 @@ export class Transactione {
   @Column({ type: "decimal", precision: 11, scale: 2 })
   value: number;
 
+  @Column({ type: "text" })
+  description: string;
+
   @Column({
     type: "enum",
     enum: ["debit_card", "credit_card"],
@@ -25,6 +28,7 @@ export class Transactione {
 
   @Column({ length: 16 })
   card_number: string;
+
 
   @Column({ length: 250 })
   cardholder_name: string;

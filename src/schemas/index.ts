@@ -14,6 +14,7 @@ import {
   transactionCreateSchema,
   transactionReturnSchema,
   transactionSchema,
+  transactionUpdateSchema,
 } from "./transaction.schema";
 
 export {
@@ -28,4 +29,5 @@ export {
   transactionCreateSchema,
   transactionReturnSchema,
   transactionSchema,
+  transactionUpdateSchema,
 };

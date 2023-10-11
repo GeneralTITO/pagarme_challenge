@@ -4,6 +4,7 @@ import { userSchema } from "./user.schema";
 const transactionSchema = z.object({
   id: z.number().int().positive(),
   value: z.number().min(0.01).max(9999999999.99),
+  description: z.string(),
   payment_method: z.enum(["debit_card", "credit_card"]),
   card_number: z.string().min(16).max(16),
   cardholder_name: z.string().min(1).max(250),
@@ -23,11 +24,11 @@ const transactionCreateSchema = transactionSchema.omit({
   createdAt: true,
 });
 
-const userUpdateSchema = transactionCreateSchema.partial();
+const transactionUpdateSchema = transactionCreateSchema.partial();
 
 export {
   transactionCreateSchema,
   transactionReturnSchema,
   transactionSchema,
-  userUpdateSchema,
+  transactionUpdateSchema,
 };

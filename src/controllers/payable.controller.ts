@@ -11,15 +11,6 @@ const read = async (req: Request, res: Response): Promise<Response> => {
   return res.status(200).json(payable);
 };
 
-const update = async (req: Request, res: Response): Promise<Response> => {
-  const id: number = Number(req.params.id);
-  const payable = await payableService.update(req.body, id);
-  return res.status(200).json(payable);
-};
 
-const destroy = async (req: Request, res: Response): Promise<Response> => {
-  await payableService.destroy(res.locals.foundEntity);
-  return res.status(204).json();
-};
 
-export default { create, read, update, destroy };
+export default { create, read };
