@@ -14,7 +14,7 @@ const transactionSchema = z.object({
 });
 
 const transactionReturnSchema = transactionSchema.extend({
-  card_name: z.string().min(4).max(4),
+  card_number: z.string().min(4).max(4),
 });
 
 const transactionCreateSchema = transactionSchema.omit({
